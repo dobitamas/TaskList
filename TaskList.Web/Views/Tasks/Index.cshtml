@@ -27,7 +27,7 @@
                             <td>@task.TaskName</td>
                             <td>@task.IsCompleted</td>
                             <td>@task.DateCreated.ToShortDateString()</td>
-                            <td class="text-center">@Html.ActionLink("Edit", "Edit", "Tasks", new { Id = task.Id })</td>
+                            <td class="text-center">@Html.ActionLink("Edit", "Edit", "Tasks", new { Id = task.Id }) | @Html.ActionLink("Delete", "Delete", "Tasks", new { Id = task.Id })</td>
                         </tr>
                     }
                 }

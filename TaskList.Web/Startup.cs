@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TaskList.DAL;
 using Npgsql;
+using TaskList.Services.EmailService;
 
 namespace TaskList.Web
 {
@@ -34,6 +35,8 @@ namespace TaskList.Web
             services.AddDbContext<TaskListDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), mig => mig.MigrationsAssembly("TaskList.DAL")));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

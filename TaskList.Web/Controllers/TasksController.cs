@@ -42,9 +42,9 @@ namespace TaskList.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int Id)
         {
-            return View(_db.TaskItems.FirstOrDefault(a => a.Id == id));
+            return View(_db.TaskItems.FirstOrDefault(a => a.Id == Id));
         }
 
         [HttpPost]
@@ -60,6 +60,20 @@ namespace TaskList.Web.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        public IActionResult Delete(int Id)
+        {
+            return View(_db.TaskItems.FirstOrDefault(a => a.Id == Id));
+        }
+
+        [HttpPost]
+        public IActionResult Delete(TaskItem model)
+        {
+            var deleteModel = _db.TaskItems.Find(model.Id);
+            _db.Remove(deleteModel);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
