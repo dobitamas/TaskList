@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TaskList.DAL;
+using Npgsql;
 
 namespace TaskList.Web
 {
@@ -30,7 +31,7 @@ namespace TaskList.Web
 
             services.AddHttpContextAccessor();
 
-            services.AddDbContext<TaskListDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), mig => mig.MigrationsAssembly("TaskList.DAL")));
+            services.AddDbContext<TaskListDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), mig => mig.MigrationsAssembly("TaskList.DAL")));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }

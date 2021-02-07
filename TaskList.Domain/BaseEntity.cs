@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskList.Domain
 {
@@ -16,11 +17,9 @@ namespace TaskList.Domain
         public DateTime LastModified { get; set; }
 
         [ScaffoldColumn(false)]
-        [StringLength(255)]
         public string CreatedById { get; set; }
 
         [ScaffoldColumn(false)]
-        [StringLength(255)]
         public string ModifiedById { get; set; }
 
         [ScaffoldColumn(false)]

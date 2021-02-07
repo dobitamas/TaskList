@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
+using TaskList.Domain;
 
 namespace TaskList.DAL
 {
-    public class TaskListDbContext : DbContext
+    public partial class TaskListDbContext : DbContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -12,5 +13,7 @@ namespace TaskList.DAL
         {
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public DbSet<TaskItem> TaskItems { get; set; }
     }
 }
